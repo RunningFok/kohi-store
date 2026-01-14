@@ -38,13 +38,21 @@ class Product extends Model
         ];
     }
 
-    public function isInStock(): bool
+    /**
+     * Get the availability status based on status and stock quantity.
+     *
+     * @return string
+     */
+    public function getAvailabilityAttribute(): string
     {
-        return $this->stock_quantity > 0 && $this->status === 'active';
-    }
+        if ($this->status === 'inactive') {
+            return 'inavaliable';
+        }
 
-    public function isAvailable(): bool
-    {
-        return $this->status === 'active';
+        if ($this->status === 'active') {
+            return $this->stock_quantity > 0 ? 'available' : 'out of stock';
+        }
+
+        return 'inavaliable';
     }
 }
