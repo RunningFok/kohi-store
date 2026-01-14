@@ -39,13 +39,6 @@ class CustomerResource extends Resource
                             ->tel()
                             ->maxLength(255),
 
-                        Forms\Components\Select::make('status')
-                            ->required()
-                            ->options([
-                                'active' => 'Active',
-                                'inactive' => 'Inactive',
-                            ])
-                            ->default('active'),
                     ])
                     ->columns(2),
 
@@ -117,23 +110,9 @@ class CustomerResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('status')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'active' => 'success',
-                        'inactive' => 'gray',
-                        default => 'gray',
-                    })
-                    ->sortable(),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('status')
-                    ->options([
-                        'active' => 'Active',
-                        'inactive' => 'Inactive',
-                    ]),
-
-                Tables\Filters\TrashedFilter::make(),
+            
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

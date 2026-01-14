@@ -24,7 +24,6 @@ class Customer extends Model
         'city',
         'postal_code',
         'country',
-        'status',
     ];
 
     /**
@@ -45,7 +44,6 @@ class Customer extends Model
     {
         return [
             'password' => 'hashed',
-            'status' => 'string',
         ];
     }
 }
