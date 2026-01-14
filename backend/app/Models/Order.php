@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Customer extends Model
+class Order extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -17,23 +18,9 @@ class Customer extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'phone',
-        'address',
-        'city',
-        'postal_code',
-        'country',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
+        'customer_id',
+        'status',
+        'total_amount',
     ];
 
     /**
@@ -44,15 +31,24 @@ class Customer extends Model
     protected function casts(): array
     {
         return [
-            'password' => 'hashed',
+            'total_amount' => 'decimal:2',
+            'status' => 'string',
         ];
     }
 
     /**
-     * Get the orders for the customer.
+     * Get the customer that owns the order.
      */
-    public function orders(): HasMany
+    public function customer(): BelongsTo
     {
-        return $this->hasMany(Order::class);
+        return $this->belongsTo(Customer::class);
+    }
+
+    /**
+     * Get the order items for the order.
+     */
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }
