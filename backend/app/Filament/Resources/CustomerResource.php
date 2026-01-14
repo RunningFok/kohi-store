@@ -130,6 +130,13 @@ class CustomerResource extends Resource
             ->defaultSort('id', 'desc');
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            RelationManagers\OrdersRelationManager::class,
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
