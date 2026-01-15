@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function index(): JsonResponse
     {
         $products = Product::where('status', 'active')
-            ->select('id', 'name', 'description', 'price', 'image', 'status')
+            ->select('id', 'name', 'description', 'price', 'image', 'status', 'stock_quantity')
             ->get()
             ->map(function ($product) {
                 return [
@@ -20,7 +20,7 @@ class ProductController extends Controller
                     'description' => $product->description,
                     'price' => (float) $product->price,
                     'image' => null,
-                    'product_availability' => $product->availability,
+                    'availability' => $product->availability,
                 ];
             });
 
@@ -31,7 +31,7 @@ class ProductController extends Controller
     {
         $product = Product::where('status', 'active')
             ->where('id', $id)
-            ->select('id', 'name', 'description', 'price', 'image', 'status')
+            ->select('id', 'name', 'description', 'price', 'image', 'status', 'stock_quantity')
             ->first();
 
         if (!$product) {
@@ -44,7 +44,7 @@ class ProductController extends Controller
             'description' => $product->description,
             'price' => (float) $product->price,
             'image' => null,
-            'product_availability' => $product->availability,
+            'availability' => $product->availability,
         ]);
     }
 }

@@ -49,15 +49,12 @@
                             <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ product.name }}</h1>
                             
                             <div class="mb-6">
-                                <p class="text-3xl font-bold text-gray-900 mb-2">€{{ product.price.toFixed(2) }}</p>
-                                <p v-if="product.product_availability === 'available'" class="text-green-600 text-sm">
+                                <p class="text-xl font-bold text-gray-900 mb-2">€{{ product.price.toFixed(2) }}</p>
+                                <p v-if="product.availability === 'available'" class="text-green-600 text-sm">
                                     In Stock
                                 </p>
-                                <p v-else-if="product.product_availability === 'out of stock'" class="text-red-600 text-sm">
+                                <p v-else class="text-red-600 text-sm">
                                     Out of Stock
-                                </p>
-                                <p v-else class="text-gray-600 text-sm">
-                                    Unavailable
                                 </p>
                             </div>
 
@@ -70,7 +67,7 @@
                             <div class="flex gap-4">
                                 <button
                                     @click="addToBasket"
-                                    :disabled="product.product_availability !== 'available'"
+                                    :disabled="product.availability !== 'available'"
                                     class="flex-1 bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors font-medium"
                                 >
                                     Add to Basket
