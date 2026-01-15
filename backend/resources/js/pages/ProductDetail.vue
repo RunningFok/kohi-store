@@ -87,6 +87,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import api from '../services/api';
 
 const route = useRoute();
 const router = useRouter();
@@ -102,57 +103,11 @@ const fetchProduct = async () => {
         error.value = null;
 
         const productId = route.params.id;
-
-        // TODO: Replace with actual API call
-        // const response = await api.getProduct(productId);
-        // product.value = response.data;
-
-        // Mock data for now
-        const mockProducts = [
-            {
-                id: 1,
-                name: 'Product 1',
-                price: 29.99,
-                description: 'This is a detailed description of Product 1. It includes all the features and benefits.',
-                product_availability: 'available',
-                image: null,
-            },
-            {
-                id: 2,
-                name: 'Product 2',
-                price: 49.99,
-                description: 'This is a detailed description of Product 2. It includes all the features and benefits.',
-                product_availability: 'available',
-                image: null,
-            },
-            {
-                id: 3,
-                name: 'Product 3',
-                price: 39.99,
-                description: 'This is a detailed description of Product 3. It includes all the features and benefits.',
-                product_availability: 'out of stock',
-                image: null,
-            },
-            {
-                id: 4,
-                name: 'Product 4',
-                price: 59.99,
-                description: 'This is a detailed description of Product 4. It includes all the features and benefits.',
-                product_availability: 'available',
-                image: null,
-            },
-        ];
-
-        const foundProduct = mockProducts.find(p => p.id === parseInt(productId));
-        
-        if (foundProduct) {
-            product.value = foundProduct;
-        } else {
-            error.value = 'Product not found';
-        }
+        const response = await api.getProduct(productId);
+        product.value = response.data;
     } catch (err) {
         error.value = 'Failed to load product';
-        console.error(err);
+        console.error('Error fetching product:', err);
     } finally {
         loading.value = false;
     }

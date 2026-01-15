@@ -12,6 +12,7 @@ const API_BASE_URL = '/api';
 
 const api = {
     getProducts: () => axios.get(`${API_BASE_URL}/products`),
+    getProduct: (id) => axios.get(`${API_BASE_URL}/products/${id}`),
 };
 
 export default api;
