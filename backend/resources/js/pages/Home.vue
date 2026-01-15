@@ -20,10 +20,11 @@
         <div class="container mx-auto px-4 py-4">
             <!-- Desktop: Grid Layout (4 items) -->
             <div class="hidden md:grid md:grid-cols-4 gap-6">
-                <div
+                <router-link
                     v-for="product in products"
                     :key="product.id"
-                    class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                    :to="`/products/${product.id}`"
+                    class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
                 >
                     <div class="h-48 bg-gray-200">
                         <img
@@ -40,7 +41,7 @@
                         <h3 class="font-semibold text-gray-900 mb-2">{{ product.name }}</h3>
                         <p class="font-bold text-gray-900">€{{ product.price.toFixed(2) }}</p>
                     </div>
-                </div>
+                </router-link>
             </div>
 
             <!-- Mobile: Carousel -->
@@ -55,7 +56,10 @@
                             :key="product.id"
                             class="min-w-full px-4"
                         >
-                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <router-link
+                                :to="`/products/${product.id}`"
+                                class="block bg-white rounded-lg shadow-md overflow-hidden"
+                            >
                                 <div class="h-48 bg-gray-200 relative">
                                     <img
                                         v-if="product.image"
@@ -71,7 +75,7 @@
                                     <h3 class="font-semibold text-gray-900 mb-2">{{ product.name }}</h3>
                                     <p class="font-bold text-gray-900">€{{ product.price.toFixed(2) }}</p>
                                 </div>
-                            </div>
+                            </router-link>
                         </div>
                     </div>
 
