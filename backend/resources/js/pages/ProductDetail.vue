@@ -45,7 +45,7 @@
                         </div>
 
                         <!-- Product Info -->
-                        <div class="md:w-1/2 p-6 md:p-8">
+                        <div class="md:w-1/2 p-4 md:p-8">
                             <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ product.name }}</h1>
                             
                             <div class="mb-6">
@@ -59,8 +59,7 @@
                             </div>
 
                             <div v-if="product.description" class="mb-6">
-                                <h2 class="text-lg font-semibold text-gray-900 mb-2">Description</h2>
-                                <p class="text-gray-600">{{ product.description }}</p>
+                                <p class="text-gray-600 text-sm md:text-base">{{ product.description }}</p>
                             </div>
 
                             <!-- Add to Basket Button -->
