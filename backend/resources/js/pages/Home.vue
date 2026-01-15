@@ -18,8 +18,18 @@
 
         <!-- Products Section -->
         <div class="container mx-auto px-4 py-4">
+            <!-- Loading State -->
+            <div v-if="loading" class="text-center py-12">
+                <p class="text-gray-500">Loading Products...</p>
+            </div>
+
+            <!-- Error State -->
+            <div v-else-if="error" class="text-center py-12">
+                <p class="text-red-500">{{ error }}</p>
+            </div>
+
             <!-- Desktop: Grid Layout (4 items) -->
-            <div class="hidden md:grid md:grid-cols-4 gap-6">
+            <div v-if="products.length > 0" class="hidden md:grid md:grid-cols-4 gap-6">
                 <router-link
                     v-for="product in products"
                     :key="product.id"
@@ -45,7 +55,7 @@
             </div>
 
             <!-- Mobile: Carousel -->
-            <div class="md:hidden relative">
+            <div v-if="products.length > 0" class="md:hidden relative">
                 <div class="relative overflow-hidden">
                     <div
                         class="flex transition-transform duration-300 ease-in-out"
@@ -102,43 +112,41 @@
                     </button>
                 </div>
             </div>
+
+            <!-- Empty State -->
+            <div v-if="!loading && !error && products.length === 0" class="text-center py-12">
+                <p class="text-gray-500">No Products Available</p>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import api from '../services/api';
 
-// Mock product data
-const products = ref([
-    {
-        id: 1,
-        name: 'Product 1',
-        price: 29.99,
-        image: null,
-    },
-    {
-        id: 2,
-        name: 'Product 2',
-        price: 49.99,
-        image: null,
-    },
-    {
-        id: 3,
-        name: 'Product 3',
-        price: 39.99,
-        image: null,
-    },
-    {
-        id: 4,
-        name: 'Product 4',
-        price: 59.99,
-        image: null,
-    },
-]);
+const products = ref([]);
+const loading = ref(true);
+const error = ref(null);
 
 // Carousel state
 const currentIndex = ref(0);
+
+// Fetch products from Laravel API
+const fetchProducts = async () => {
+    try {
+        loading.value = true;
+        error.value = null;
+        
+        const response = await api.getProducts();
+        products.value = response.data;
+    } catch (err) {
+        error.value = 'Failed to load products';
+        console.error('Error fetching products:', err);
+    } finally {
+        loading.value = false;
+    }
+};
 
 const nextProduct = () => {
     if (currentIndex.value < products.value.length - 1) {
@@ -151,4 +159,9 @@ const previousProduct = () => {
         currentIndex.value--;
     }
 };
+
+// Fetch products on component mount
+onMounted(() => {
+    fetchProducts();
+});
 </script>
