@@ -4,11 +4,13 @@
         <main>
             <router-view />
         </main>
+        <BasketSlideout />
     </div>
 </template>
 
 <script setup>
 import NavBar from './components/NavBar.vue';
+import BasketSlideout from './components/BasketSlideout.vue';
 </script>
 
 <style scoped>
