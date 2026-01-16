@@ -4,6 +4,7 @@ import Login from './pages/Login.vue';
 import Register from './pages/Register.vue';
 import CustomerAccount from './pages/CustomerAccount.vue';
 import Checkout from './pages/Checkout.vue';
+import OrderConfirmation from './pages/OrderConfirmation.vue';
 
 export default [
     {
@@ -35,5 +36,10 @@ export default [
         path: '/checkout',
         name: 'checkout',
         component: Checkout,
+    },
+    {
+        path: '/checkout/confirmation/:orderId',
+        name: 'order-confirmation',
+        component: OrderConfirmation,
     },
 ];
