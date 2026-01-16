@@ -15,6 +15,7 @@ Route::post('/customers/login', [CustomerController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/customers/me', [CustomerController::class, 'me']);
     Route::post('/customers/logout', [CustomerController::class, 'logout']);
+    Route::patch('/customers/address', [CustomerController::class, 'updateAddress']);
     
     Route::get('/basket', [BasketController::class, 'get']);
     Route::post('/basket', [BasketController::class, 'save']);

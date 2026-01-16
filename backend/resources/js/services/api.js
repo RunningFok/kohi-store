@@ -22,6 +22,7 @@ const api = {
     getBasket: () => axios.get(`${API_BASE_URL}/basket`),
     saveBasket: (basket) => axios.post(`${API_BASE_URL}/basket`, { basket }),
     clearBasket: () => axios.delete(`${API_BASE_URL}/basket`),
+    updateAddress: (data) => axios.patch(`${API_BASE_URL}/customers/address`, data),
 };
 
 export const setAuthToken = (token) => {
