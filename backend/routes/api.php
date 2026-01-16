@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\BasketController;
 use App\Http\Controllers\Api\CheckoutController;
+use App\Http\Controllers\Api\OrderController;
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
@@ -24,4 +25,5 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::post('/checkout', [CheckoutController::class, 'processCheckout']);
     
+    Route::get('/orders/{id}', [OrderController::class, 'show']);
 });

@@ -24,6 +24,7 @@ const api = {
     clearBasket: () => axios.delete(`${API_BASE_URL}/basket`),
     
     processCheckout: (data) => axios.post(`${API_BASE_URL}/checkout`, data),
+    getOrder: (id) => axios.get(`${API_BASE_URL}/orders/${id}`),
     updateAddress: (data) => axios.patch(`${API_BASE_URL}/customers/address`, data),
 };
 
