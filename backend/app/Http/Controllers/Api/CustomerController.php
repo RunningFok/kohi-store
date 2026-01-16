@@ -117,4 +117,45 @@ class CustomerController extends Controller
             'message' => 'Logged out successfully'
         ]);
     }
+
+    public function updateAddress(Request $request): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'address' => 'nullable|string|max:500',
+            'city' => 'nullable|string|max:255',
+            'postal_code' => 'nullable|string|max:255',
+            'country' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $customer = $request->user('sanctum');
+        
+        $customer->address = $request->address ?? $customer->address;
+        $customer->city = $request->city ?? $customer->city;
+        $customer->postal_code = $request->postal_code ?? $customer->postal_code;
+        $customer->country = $request->country ?? $customer->country;
+        $customer->phone = $request->phone ?? $customer->phone;
+        $customer->save();
+
+        return response()->json([
+            'message' => 'Address updated successfully',
+            'customer' => [
+                'id' => $customer->id,
+                'name' => $customer->name,
+                'email' => $customer->email,
+                'phone' => $customer->phone,
+                'address' => $customer->address,
+                'city' => $customer->city,
+                'postal_code' => $customer->postal_code,
+                'country' => $customer->country,
+            ],
+        ]);
+    }
 }

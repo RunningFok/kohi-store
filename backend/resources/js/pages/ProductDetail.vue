@@ -84,9 +84,13 @@
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import api from '../services/api';
+import { useBasket } from '../composables/useBasket';
+import { useAuth } from '../composables/useAuth';
 
 const route = useRoute();
 const router = useRouter();
+const { addItem } = useBasket();
+const { isAuthenticated } = useAuth();
 
 const product = ref(null);
 const loading = ref(true);
@@ -110,9 +114,16 @@ const fetchProduct = async () => {
 };
 
 const addToBasket = () => {
-    // TODO: Implement add to basket logic
-    console.log('Add to basket:', product.value);
-    // You can add basket logic here or use a store
+    if (!isAuthenticated.value) {
+        router.push('/login');
+        return;
+    }
+
+    try {
+        addItem(product.value);
+    } catch (error) {
+        alert(error.message);
+    }
 };
 
 onMounted(() => {
