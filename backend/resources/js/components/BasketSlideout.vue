@@ -138,6 +138,7 @@ const decreaseQuantity = async (productId, currentQuantity) => {
 
 const handleCheckout = () => {
     closeBasket();
+    router.push('/checkout');
 };
 </script>
 
