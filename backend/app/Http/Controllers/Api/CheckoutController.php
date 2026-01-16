@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -77,6 +78,30 @@ class CheckoutController extends Controller
         try {
             DB::beginTransaction();
 
+            $productIds = array_column($basket, 'product_id');
+            $products = Product::whereIn('id', $productIds)->lockForUpdate()->get()->keyBy('id');
+            
+            foreach ($basket as $item) {
+                $product = $products->get($item['product_id']);
+                if (!$product) {
+                    DB::rollBack();
+                    return response()->json([
+                        'message' => 'Product not found',
+                        'errors' => ['product_id' => ['Product with ID ' . $item['product_id'] . ' not found']]
+                    ], 404);
+                }
+                
+                if ($product->stock_quantity < $item['quantity']) {
+                    DB::rollBack();
+                    return response()->json([
+                        'message' => 'Insufficient stock',
+                        'errors' => [
+                            'quantity' => ['Insufficient stock for ' . $product->name . '. Available: ' . $product->stock_quantity . ', Requested: ' . $item['quantity']]
+                        ]
+                    ], 422);
+                }
+            }
+
             $totalAmount = 0;
             foreach ($basket as $item) {
                 $totalAmount += $item['price'] * $item['quantity'];
@@ -93,6 +118,8 @@ class CheckoutController extends Controller
             ]);
 
             foreach ($basket as $item) {
+                $product = $products->get($item['product_id']);
+                
                 OrderItem::create([
                     'order_id' => $order->id,
                     'product_id' => $item['product_id'],
@@ -100,6 +127,9 @@ class CheckoutController extends Controller
                     'price' => $item['price'],
                     'subtotal' => $item['price'] * $item['quantity'],
                 ]);
+                
+                $product->stock_quantity -= $item['quantity'];
+                $product->save();
             }
 
             Cache::forget($cacheKey);
