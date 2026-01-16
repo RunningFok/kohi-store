@@ -21,6 +21,10 @@ class Order extends Model
         'customer_id',
         'status',
         'total_amount',
+        'shipping_address',
+        'shipping_city',
+        'shipping_postal_code',
+        'shipping_country',
     ];
 
     /**
