@@ -1,5 +1,7 @@
 import Home from './pages/Home.vue';
 import ProductDetail from './pages/ProductDetail.vue';
+import Login from './pages/Login.vue';
+import Register from './pages/Register.vue';
 
 export default [
     {
@@ -11,5 +13,15 @@ export default [
         path: '/products/:id',
         name: 'product-detail',
         component: ProductDetail,
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login,
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: Register,
     },
 ];
