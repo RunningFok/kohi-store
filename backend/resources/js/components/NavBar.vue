@@ -2,17 +2,21 @@
     <nav class="bg-white shadow-md">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between h-16">
-                <div class="text-2xl font-bold text-gray-900">
+                <router-link to="/" class="text-2xl font-bold text-gray-900">
                     KohiStore
-                </div>
+                </router-link>
 
                 <div class="flex items-center gap-4">
-                    <button class="p-2 text-gray-700 hover:text-gray-900 transition-colors">
+                    <router-link
+                        :to="isAuthenticated ? '/account' : '/login'"
+                        class="p-2 text-gray-700 hover:text-gray-900 transition-colors"
+                        :title="isAuthenticated ? 'My Account' : 'Login'"
+                    >
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
-                    </button>
+                    </router-link>
 
                     <button class="relative p-2 text-gray-700 hover:text-gray-900 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -27,5 +31,15 @@
 </template>
 
 <script setup>
-// NavBar component - no logic implemented
+import { computed, onMounted } from 'vue';
+import { useAuth } from '../composables/useAuth';
+
+const { customer, isAuthenticated, loadCustomer } = useAuth();
+
+onMounted(() => {
+    const token = localStorage.getItem('auth_token');
+    if (token && !customer.value) {
+        loadCustomer();
+    }
+});
 </script>

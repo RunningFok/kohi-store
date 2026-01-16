@@ -13,6 +13,26 @@ const API_BASE_URL = '/api';
 const api = {
     getProducts: () => axios.get(`${API_BASE_URL}/products`),
     getProduct: (id) => axios.get(`${API_BASE_URL}/products/${id}`),
+    
+    register: (data) => axios.post(`${API_BASE_URL}/customers/register`, data),
+    login: (data) => axios.post(`${API_BASE_URL}/customers/login`, data),
+    logout: () => axios.post(`${API_BASE_URL}/customers/logout`),
+    getCurrentCustomer: () => axios.get(`${API_BASE_URL}/customers/me`),
 };
+
+export const setAuthToken = (token) => {
+    if (token) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        localStorage.setItem('auth_token', token);
+    } else {
+        delete axios.defaults.headers.common['Authorization'];
+        localStorage.removeItem('auth_token');
+    }
+};
+
+const savedToken = localStorage.getItem('auth_token');
+if (savedToken) {
+    setAuthToken(savedToken);
+}
 
 export default api;
