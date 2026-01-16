@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\BasketController;
+use App\Http\Controllers\Api\CheckoutController;
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
@@ -20,4 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/basket', [BasketController::class, 'get']);
     Route::post('/basket', [BasketController::class, 'save']);
     Route::delete('/basket', [BasketController::class, 'clear']);
+    
+    Route::post('/checkout', [CheckoutController::class, 'processCheckout']);
+    
 });
