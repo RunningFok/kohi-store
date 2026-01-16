@@ -228,7 +228,7 @@ import { useAuth } from '../composables/useAuth';
 import api from '../services/api';
 
 const router = useRouter();
-const { basketItems, totalQuantity, totalPrice, loadBasket } = useBasket();
+const { basketItems, totalQuantity, totalPrice, loadBasket, clearBasket } = useBasket();
 const { customer, loadCustomer } = useAuth();
 
 const loading = ref(true);
@@ -264,6 +264,9 @@ const handleCheckout = async () => {
             };
 
         const response = await api.processCheckout({...addressData});
+
+        // Clear the basket in the frontend to update navbar
+        await clearBasket();
 
         router.push({
             name: 'order-confirmation',
