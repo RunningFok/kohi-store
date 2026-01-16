@@ -18,6 +18,10 @@ const api = {
     login: (data) => axios.post(`${API_BASE_URL}/customers/login`, data),
     logout: () => axios.post(`${API_BASE_URL}/customers/logout`),
     getCurrentCustomer: () => axios.get(`${API_BASE_URL}/customers/me`),
+    
+    getBasket: () => axios.get(`${API_BASE_URL}/basket`),
+    saveBasket: (basket) => axios.post(`${API_BASE_URL}/basket`, { basket }),
+    clearBasket: () => axios.delete(`${API_BASE_URL}/basket`),
 };
 
 export const setAuthToken = (token) => {
