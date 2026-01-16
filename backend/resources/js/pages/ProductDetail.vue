@@ -121,7 +121,6 @@ const addToBasket = () => {
 
     try {
         addItem(product.value);
-        alert('Product added to basket!');
     } catch (error) {
         alert(error.message);
     }
