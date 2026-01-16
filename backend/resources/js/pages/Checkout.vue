@@ -64,7 +64,7 @@
 
                                 <div>
                                     <label for="postal_code" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Postal Code <span class="text-red-500">*</span>
+                                        Postal Code
                                     </label>
                                     <input
                                         id="postal_code"
@@ -245,7 +245,7 @@ const addressForm = ref({
 });
 
 const hasAddress = computed(() => {
-    return customer.value && customer.value.address && customer.value.city && customer.value.postal_code && customer.value.country;
+    return customer.value && customer.value.address && customer.value.city && customer.value.country;
 });
 
 const handleCheckout = async () => {

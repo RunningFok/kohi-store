@@ -41,9 +41,9 @@ class CheckoutController extends Controller
             ], 422);
         }
 
-        $needsAddress = empty($customer->address) && empty($customer->city) && empty($customer->postal_code) && empty($customer->country);
+        $needsAddress = empty($customer->address) && empty($customer->city) && empty($customer->country);
         
-        if ($needsAddress && (!$request->address || !$request->city || !$request->postal_code || !$request->country)) {
+        if ($needsAddress && (!$request->address || !$request->city || !$request->country)) {
             return response()->json([
                 'message' => 'Address is required',
                 'errors' => [
@@ -66,7 +66,7 @@ class CheckoutController extends Controller
         $shippingPostalCode = $request->postal_code ?? $customer->postal_code;
         $shippingCountry = $request->country ?? $customer->country;
 
-        if (empty($shippingAddress) || empty($shippingCity) || empty($shippingPostalCode) || empty($shippingCountry)) {
+        if (empty($shippingAddress) || empty($shippingCity) || empty($shippingCountry)) {
             return response()->json([
                 'message' => 'Complete shipping address is required',
                 'errors' => [
