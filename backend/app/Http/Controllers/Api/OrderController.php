@@ -9,6 +9,20 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function index(Request $request): JsonResponse
+    {
+        $customer = $request->user('sanctum');
+        
+        $orders = Order::with(['orderItems.product'])
+            ->where('customer_id', $customer->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json([
+            'orders' => $orders,
+        ]);
+    }
+
     public function show(Request $request, $id): JsonResponse
     {
         $customer = $request->user('sanctum');
