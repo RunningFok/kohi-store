@@ -2,6 +2,7 @@ import Home from './pages/Home.vue';
 import ProductDetail from './pages/ProductDetail.vue';
 import Login from './pages/Login.vue';
 import Register from './pages/Register.vue';
+import CustomerAccount from './pages/CustomerAccount.vue';
 
 export default [
     {
@@ -23,5 +24,10 @@ export default [
         path: '/register',
         name: 'register',
         component: Register,
+    },
+    {
+        path: '/account',
+        name: 'account',
+        component: CustomerAccount,
     },
 ];
