@@ -33,10 +33,27 @@ export const useBasket = () => {
             return;
         }
         
+        if (basketItems.value.length === 0) {
+            return;
+        }
+        
         try {
-            await api.saveBasket(basketItems.value);
+            const normalizedBasket = basketItems.value.map(item => ({
+                product_id: Number(item.product_id),
+                product_name: String(item.product_name || ''),
+                price: Number(item.price),
+                quantity: Number(item.quantity),
+            }));
+            
+            await api.saveBasket(normalizedBasket);
         } catch (error) {
             console.error('Error saving basket:', error);
+            if (error.response?.data) {
+                console.error('Response data:', error.response.data);
+                if (error.response.data.errors) {
+                    console.error('Validation errors:', error.response.data.errors);
+                }
+            }
         }
     };
 
@@ -75,12 +92,12 @@ export const useBasket = () => {
         const existingItem = basketItems.value.find(item => item.product_id === product.id);
 
         if (existingItem) {
-            existingItem.quantity += 1;
+            existingItem.quantity = Number(existingItem.quantity) + 1;
         } else {
             basketItems.value.push({
-                product_id: product.id,
-                product_name: product.name,
-                price: product.price,
+                product_id: Number(product.id),
+                product_name: String(product.name || ''),
+                price: Number(product.price),
                 quantity: 1,
             });
         }
@@ -88,11 +105,59 @@ export const useBasket = () => {
         await saveBasket();
     };
 
+    const removeItem = async (productId) => {
+        const idToRemove = Number(productId);
+        const beforeCount = basketItems.value.length;
+        
+        basketItems.value = basketItems.value.filter(item => Number(item.product_id) !== idToRemove);
+        
+        if (basketItems.value.length < beforeCount) {
+            if (basketItems.value.length === 0) {
+                try {
+                    if (isAuthenticated.value) {
+                        await api.clearBasket();
+                    }
+                } catch (error) {
+                    console.error('Error clearing basket:', error);
+                }
+            } else {
+                await saveBasket();
+            }
+        }
+    };
+
+    const updateQuantity = async (productId, quantity) => {
+        const item = basketItems.value.find(item => item.product_id === productId);
+        if (item) {
+            const qty = Number(quantity);
+            if (qty <= 0) {
+                await removeItem(productId);
+            } else {
+                item.quantity = qty;
+                await saveBasket();
+            }
+        }
+    };
+
+    const clearBasket = async () => {
+        basketItems.value = [];
+        try {
+            if (isAuthenticated.value) {
+                await api.clearBasket();
+            }
+        } catch (error) {
+            console.error('Error clearing basket:', error);
+        }
+    };
+
     return {
         basketItems,
         totalQuantity,
         totalPrice,
         addItem,
+        removeItem,
+        updateQuantity,
+        clearBasket,
         loadBasket,
     };
 };

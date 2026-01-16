@@ -18,4 +18,5 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::get('/basket', [BasketController::class, 'get']);
     Route::post('/basket', [BasketController::class, 'save']);
+    Route::delete('/basket', [BasketController::class, 'clear']);
 });

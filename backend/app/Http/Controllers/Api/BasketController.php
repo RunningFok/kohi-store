@@ -41,4 +41,16 @@ class BasketController extends Controller
             'basket' => $request->basket,
         ]);
     }
+
+    public function clear(Request $request): JsonResponse
+    {
+        $customer = $request->user('sanctum');
+        $cacheKey = "basket:customer:{$customer->id}";
+        
+        Cache::forget($cacheKey);
+        
+        return response()->json([
+            'message' => 'Basket cleared successfully',
+        ]);
+    }
 }
