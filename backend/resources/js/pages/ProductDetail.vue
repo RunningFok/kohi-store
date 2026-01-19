@@ -89,11 +89,13 @@ import { useRoute, useRouter } from 'vue-router';
 import api from '../services/api';
 import { useBasket } from '../composables/useBasket';
 import { useAuth } from '../composables/useAuth';
+import { useBasketSlideout } from '../composables/useBasketSlideout';
 
 const route = useRoute();
 const router = useRouter();
 const { addItem } = useBasket();
 const { isAuthenticated } = useAuth();
+const { openBasket } = useBasketSlideout();
 
 const product = ref(null);
 const loading = ref(true);
@@ -124,6 +126,7 @@ const addToBasket = () => {
 
     try {
         addItem(product.value);
+        openBasket();
     } catch (error) {
         alert(error.message);
     }
