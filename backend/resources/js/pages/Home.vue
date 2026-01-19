@@ -48,9 +48,12 @@
                             :alt="product.name"
                             class="w-full h-full object-cover"
                         />
-                        <div v-else class="w-full h-full flex items-center justify-center text-gray-400">
-                            No Image
-                        </div>
+                        <img
+                            v-else
+                            src="/images/product_default.jpg"
+                            :alt="'No Image'"
+                            class="w-full h-full object-cover"
+                        />
                     </div>
                     <div class="px-4 py-2 flex flex-row justify-between text-base">
                         <h3 class="font-semibold text-gray-900 mb-2">{{ product.name }}</h3>
@@ -82,9 +85,12 @@
                                         :alt="product.name"
                                         class="w-full h-full object-cover"
                                     />
-                                    <div v-else class="w-full h-full flex items-center justify-center text-gray-400">
-                                        No Image
-                                    </div>
+                                    <img v
+                                        v-else
+                                        src="/images/product_default.jpg"
+                                        :alt="'No Image'"
+                                        class="w-full h-full object-cover"
+                                    />
                                 </div>
                                 <div class="px-4 py-2 flex flex-row justify-between text-base">
                                     <h3 class="font-semibold text-gray-900 mb-2">{{ product.name }}</h3>

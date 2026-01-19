@@ -38,9 +38,12 @@
                                     :alt="product.name"
                                     class="w-full h-full object-cover"
                                 />
-                                <div v-else class="w-full h-full flex items-center justify-center text-gray-400">
-                                    No Image
-                                </div>
+                                <img
+                                    v-else
+                                    src="/images/product_default.jpg"
+                                    :alt="'No Image'"
+                                    class="w-full h-full object-cover"
+                                />
                             </div>
                         </div>
 
