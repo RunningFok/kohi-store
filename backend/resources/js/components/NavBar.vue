@@ -1,12 +1,12 @@
 <template>
-    <nav class="bg-white shadow-md">
+    <nav class="bg-white items-center shadow-md">
         <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between h-16">
-                <router-link to="/" class="text-2xl font-bold text-gray-900">
-                    KohiStore
+            <div class="flex items-center h-16">
+                <div class="flex-1"></div>
+                <router-link to="/" class="text-2xl font-bold text-gray-900 tracking-wide">
+                    kohiSTORE
                 </router-link>
-
-                <div class="flex items-center gap-4">
+                <div class="flex-1 flex items-center justify-end md:gap-4">
                     <router-link
                         :to="isAuthenticated ? '/account' : '/login'"
                         class="p-2 text-gray-700 hover:text-gray-900 transition-colors"
