@@ -3,8 +3,8 @@
         <div class="container mx-auto px-4">
             <div class="flex items-center h-16">
                 <div class="flex-1"></div>
-                <router-link to="/" class="text-2xl font-bold text-gray-900">
-                    KohiStore
+                <router-link to="/" class="text-2xl font-bold text-gray-900 tracking-wide">
+                    kohiSTORE
                 </router-link>
                 <div class="flex-1 flex items-center justify-end md:gap-4">
                     <router-link
