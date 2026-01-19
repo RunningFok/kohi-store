@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,8 +21,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Force HTTPS in production
-        if (config('app.env') === 'production') {
-            \URL::forceScheme('https');
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+            
+            // Ensure secure session cookies in production
+            config(['session.secure' => true]);
         }
     }
 }
