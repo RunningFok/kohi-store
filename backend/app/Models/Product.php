@@ -64,4 +64,15 @@ class Product extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
+    /**
+     * Check if the product stock is below the low stock threshold.
+     *
+     * @return bool
+     */
+    public function isLowStock(): bool
+    {
+        $threshold = config('notifications.low_stock_threshold', 20);
+        return $this->stock_quantity < $threshold;
+    }
 }

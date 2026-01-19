@@ -17,6 +17,17 @@
                             Personal Details
                         </button>
                         <button
+                            @click="activeSection = 'orders'"
+                            :class="[
+                                'w-full text-left px-4 py-2 rounded-md transition-colors',
+                                activeSection === 'orders'
+                                    ? 'bg-blue-600 text-white'
+                                    : 'text-gray-700 hover:bg-gray-100'
+                            ]"
+                        >
+                            Order History
+                        </button>
+                        <button
                             @click="handleLogout"
                             class="w-full text-left px-4 py-2 rounded-md text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors"
                         >
@@ -27,6 +38,7 @@
 
                 <main class="flex-1 bg-white rounded-lg shadow-md p-6">
                     <PersonalDetails v-if="activeSection === 'personal'" />
+                    <OrderHistory v-else-if="activeSection === 'orders'" />
                 </main>
             </div>
         </div>
@@ -38,6 +50,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuth } from '../composables/useAuth';
 import PersonalDetails from '../components/account/PersonalDetails.vue';
+import OrderHistory from '../components/account/OrderHistory.vue';
 
 const router = useRouter();
 const { customer, logout, loadCustomer } = useAuth();
