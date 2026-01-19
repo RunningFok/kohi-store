@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendLowStockNotification;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -130,6 +131,13 @@ class CheckoutController extends Controller
                 
                 $product->stock_quantity -= $item['quantity'];
                 $product->save();
+                
+                $product->refresh();
+                
+                $threshold = config('notifications.low_stock_threshold', 20);
+                if ($product->stock_quantity < $threshold) {
+                    SendLowStockNotification::dispatch($product);
+                }
             }
 
             Cache::forget($cacheKey);
