@@ -22,7 +22,6 @@ class CustomerSeeder extends Seeder
                 'city' => 'Berlin',
                 'postal_code' => '10115',
                 'country' => 'Deutschland',
-                'status' => 'active',
             ],
             [
                 'name' => 'Anna Schmidt',
@@ -33,7 +32,6 @@ class CustomerSeeder extends Seeder
                 'city' => 'München',
                 'postal_code' => '80331',
                 'country' => 'Deutschland',
-                'status' => 'active',
             ],
             [
                 'name' => 'Thomas Fischer',
@@ -44,7 +42,6 @@ class CustomerSeeder extends Seeder
                 'city' => 'Hamburg',
                 'postal_code' => '20095',
                 'country' => 'Deutschland',
-                'status' => 'active',
             ],
             [
                 'name' => 'Maria Weber',
@@ -55,7 +52,6 @@ class CustomerSeeder extends Seeder
                 'city' => 'Köln',
                 'postal_code' => '50667',
                 'country' => 'Deutschland',
-                'status' => 'active',
             ],
             [
                 'name' => 'Peter Wagner',
@@ -66,7 +62,6 @@ class CustomerSeeder extends Seeder
                 'city' => 'Frankfurt',
                 'postal_code' => '60311',
                 'country' => 'Deutschland',
-                'status' => 'active',
             ],
         ];
 
