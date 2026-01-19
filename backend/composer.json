@@ -67,6 +67,9 @@
             "@php artisan migrate --graceful --ansi"
         ],
         "pre-package-uninstall": [
+            "@php -r \"if (file_exists('bootstrap/cache/packages.php')) unlink('bootstrap/cache/packages.php');\"",
+            "@php -r \"if (file_exists('bootstrap/cache/services.php')) unlink('bootstrap/cache/services.php');\"",
+            "@php -r \"if (file_exists('bootstrap/cache/config.php')) unlink('bootstrap/cache/config.php');\"",
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
         ]
     },
