@@ -15,7 +15,7 @@ class AdminUserSeeder extends Seeder
             User::create([
                 'name' => 'Admin',
                 'email' => 'admin@kohistore.com',
-                'password' => Hash::make('admin123'),
+                'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ]);
         }

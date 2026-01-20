@@ -28,6 +28,10 @@ class OrderSeeder extends Seeder
             'customer_id' => $customers[0]->id,
             'status' => 'completed',
             'total_amount' => 0, // Will be calculated
+            'shipping_address' => $customers[0]->address,
+            'shipping_city' => $customers[0]->city,
+            'shipping_postal_code' => $customers[0]->postal_code,
+            'shipping_country' => $customers[0]->country,
         ]);
 
         $product1 = $products[0];
@@ -50,6 +54,10 @@ class OrderSeeder extends Seeder
             'customer_id' => $customers[1]->id,
             'status' => 'completed',
             'total_amount' => 0,
+            'shipping_address' => $customers[1]->address,
+            'shipping_city' => $customers[1]->city,
+            'shipping_postal_code' => $customers[1]->postal_code,
+            'shipping_country' => $customers[1]->country,
         ]);
 
         $product2a = $products[1];
@@ -78,6 +86,10 @@ class OrderSeeder extends Seeder
             'customer_id' => $customers[2]->id,
             'status' => 'pending',
             'total_amount' => 0,
+            'shipping_address' => $customers[2]->address,
+            'shipping_city' => $customers[2]->city,
+            'shipping_postal_code' => $customers[2]->postal_code,
+            'shipping_country' => $customers[2]->country,
         ]);
 
         $product3 = $products[3];

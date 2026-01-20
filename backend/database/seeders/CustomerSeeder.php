@@ -16,7 +16,7 @@ class CustomerSeeder extends Seeder
             [
                 'name' => 'Hans Müller',
                 'email' => 'hans.mueller@example.com',
-                'password' => 'password123',
+                'password' => 'password',
                 'phone' => '+491234567890',
                 'address' => 'Hauptstraße 123',
                 'city' => 'Berlin',
@@ -26,7 +26,7 @@ class CustomerSeeder extends Seeder
             [
                 'name' => 'Anna Schmidt',
                 'email' => 'anna.schmidt@example.com',
-                'password' => 'password123',
+                'password' => 'password',
                 'phone' => '+491987654321',
                 'address' => 'Bahnhofstraße 45',
                 'city' => 'München',
@@ -36,7 +36,7 @@ class CustomerSeeder extends Seeder
             [
                 'name' => 'Thomas Fischer',
                 'email' => 'thomas.fischer@example.com',
-                'password' => 'password123',
+                'password' => 'password',
                 'phone' => '+491555123456',
                 'address' => 'Kirchgasse 78',
                 'city' => 'Hamburg',
@@ -46,7 +46,7 @@ class CustomerSeeder extends Seeder
             [
                 'name' => 'Maria Weber',
                 'email' => 'maria.weber@example.com',
-                'password' => 'password123',
+                'password' => 'password',
                 'phone' => '+491444555666',
                 'address' => 'Lindenstraße 32',
                 'city' => 'Köln',
@@ -56,7 +56,7 @@ class CustomerSeeder extends Seeder
             [
                 'name' => 'Peter Wagner',
                 'email' => 'peter.wagner@example.com',
-                'password' => 'password123',
+                'password' => 'password',
                 'phone' => '+491777888999',
                 'address' => 'Mühlenweg 65',
                 'city' => 'Frankfurt',
