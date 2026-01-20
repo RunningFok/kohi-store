@@ -32,18 +32,30 @@
                         <!-- Product Image -->
                         <div class="md:w-1/2">
                             <div class="aspect-square bg-gray-200">
-                                <img
-                                    v-if="product.image"
-                                    :src="product.image"
-                                    :alt="product.name"
-                                    class="w-full h-full object-cover"
-                                />
-                                <img
-                                    v-else
-                                    src="/images/product_default.jpg"
-                                    :alt="'No Image'"
-                                    class="w-full h-full object-cover"
-                                />
+                                <picture v-if="product.image">
+                                    <source :srcset="product.image.replace(/\.(jpg|jpeg|png)$/i, '.webp')" type="image/webp" />
+                                    <img
+                                        :src="product.image"
+                                        :alt="product.name"
+                                        class="w-full h-full object-cover"
+                                        width="800"
+                                        height="800"
+                                        loading="eager"
+                                        decoding="async"
+                                    />
+                                </picture>
+                                <picture v-else>
+                                    <source srcset="/images/product_default.webp" type="image/webp" />
+                                    <img
+                                        src="/images/product_default.jpg"
+                                        alt="No Image"
+                                        class="w-full h-full object-cover"
+                                        width="800"
+                                        height="800"
+                                        loading="eager"
+                                        decoding="async"
+                                    />
+                                </picture>
                             </div>
                         </div>
 

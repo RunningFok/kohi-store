@@ -8,21 +8,34 @@
                     コーヒー
                 </span>
             </div>
-            <img
-                src="/images/banner_web.jpg"
-                alt="Banner"
-                class="hidden md:block w-full h-[600px] object-cover"
-                fetchpriority="high"
-                decoding="async"
-            />
+            <!-- Desktop Banner -->
+            <picture class="hidden md:block">
+                <source srcset="/images/banner_web.webp" type="image/webp" />
+                <img
+                    src="/images/banner_web.jpg"
+                    alt="Banner"
+                    class="w-full h-[600px] object-cover"
+                    width="1920"
+                    height="600"
+                    fetchpriority="high"
+                    decoding="async"
+                    loading="eager"
+                />
+            </picture>
             <!-- Mobile Banner -->
-            <img
-                src="/images/banner_mobile.jpg"
-                alt="Banner"
-                class="block md:hidden w-full h-[500px] object-cover"
-                fetchpriority="high"
-                decoding="async"
-            />
+            <picture class="block md:hidden">
+                <source srcset="/images/banner_mobile.webp" type="image/webp" />
+                <img
+                    src="/images/banner_mobile.jpg"
+                    alt="Banner"
+                    class="w-full h-[500px] object-cover"
+                    width="721"
+                    height="1082"
+                    fetchpriority="high"
+                    decoding="async"
+                    loading="eager"
+                />
+            </picture>
         </section>
 
         <!-- Products Section -->
@@ -46,22 +59,30 @@
                     class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
                 >
                     <div class="h-48 bg-gray-200 relative overflow-hidden">
-                        <img
-                            v-if="product.image"
-                            :src="product.image"
-                            :alt="product.name"
-                            class="w-full h-full object-cover"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                        <img
-                            v-else
-                            src="/images/product_default.jpg"
-                            :alt="'No Image'"
-                            class="w-full h-full object-cover"
-                            loading="lazy"
-                            decoding="async"
-                        />
+                        <picture v-if="product.image">
+                            <source :srcset="product.image.replace(/\.(jpg|jpeg|png)$/i, '.webp')" type="image/webp" />
+                            <img
+                                :src="product.image"
+                                :alt="product.name"
+                                class="w-full h-full object-cover"
+                                width="616"
+                                height="336"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </picture>
+                        <picture v-else>
+                            <source srcset="/images/product_default.webp" type="image/webp" />
+                            <img
+                                src="/images/product_default.jpg"
+                                alt="No Image"
+                                class="w-full h-full object-cover"
+                                width="616"
+                                height="336"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </picture>
                     </div>
                     <div class="px-4 py-2 flex flex-row justify-between text-base">
                         <h3 class="font-semibold text-gray-900 mb-2">{{ product.name }}</h3>
@@ -87,22 +108,30 @@
                                 class="block bg-white rounded-lg shadow-md overflow-hidden"
                             >
                                 <div class="h-48 bg-gray-200 relative overflow-hidden">
-                                    <img
-                                        v-if="product.image"
-                                        :src="product.image"
-                                        :alt="product.name"
-                                        class="w-full h-full object-cover"
-                                        loading="lazy"
-                                        decoding="async"
-                                    />
-                                    <img
-                                        v-else
-                                        src="/images/product_default.jpg"
-                                        :alt="'No Image'"
-                                        class="w-full h-full object-cover"
-                                        loading="lazy"
-                                        decoding="async"
-                                    />
+                                    <picture v-if="product.image">
+                                        <source :srcset="product.image.replace(/\.(jpg|jpeg|png)$/i, '.webp')" type="image/webp" />
+                                        <img
+                                            :src="product.image"
+                                            :alt="product.name"
+                                            class="w-full h-full object-cover"
+                                            width="616"
+                                            height="336"
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
+                                    </picture>
+                                    <picture v-else>
+                                        <source srcset="/images/product_default.webp" type="image/webp" />
+                                        <img
+                                            src="/images/product_default.jpg"
+                                            alt="No Image"
+                                            class="w-full h-full object-cover"
+                                            width="616"
+                                            height="336"
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
+                                    </picture>
                                 </div>
                                 <div class="px-4 py-2 flex flex-row justify-between text-base">
                                     <h3 class="font-semibold text-gray-900 mb-2">{{ product.name }}</h3>
