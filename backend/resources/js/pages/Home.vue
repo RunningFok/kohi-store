@@ -4,7 +4,7 @@
         <section class="relative w-full">
             <!-- Desktop Banner -->
             <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-8xl md:text-[26rem] font-bold text-white opacity-30">
+                <span class="text-8xl md:text-[20rem] font-bold text-white opacity-30">
                     コーヒー
                 </span>
             </div>
