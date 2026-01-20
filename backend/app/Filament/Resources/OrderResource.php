@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -121,6 +122,31 @@ class OrderResource extends Resource
                         'completed' => 'Completed',
                         'cancelled' => 'Cancelled',
                     ]),
+                Tables\Filters\Filter::make('created_from')
+                    ->label('Order Date From')
+                    ->form([
+                        Forms\Components\DatePicker::make('created_from')
+                            ->label('Order Date From'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query->when(
+                            $data['created_from'],
+                            fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                        );
+                    }),
+                Tables\Filters\Filter::make('created_until')
+                    ->label('Order Date Until')
+                    ->form([
+                        Forms\Components\DatePicker::make('created_until')
+                            ->label('Order Date Until'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query->when(
+                            $data['created_until'],
+                            fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                        );
+                    }),
+            ], layout: FiltersLayout::AboveContent)
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
