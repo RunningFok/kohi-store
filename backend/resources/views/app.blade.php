@@ -7,6 +7,12 @@
     
     <title>{{ config('app.name', 'KohiStore') }}</title>
     
+    <!-- Preload critical banner images for faster LCP -->
+    <link rel="preload" as="image" href="/images/banner_web.webp" type="image/webp" media="(min-width: 768px)" />
+    <link rel="preload" as="image" href="/images/banner_mobile.webp" type="image/webp" media="(max-width: 767px)" />
+    <link rel="preload" as="image" href="/images/banner_web.jpg" type="image/jpeg" media="(min-width: 768px)" />
+    <link rel="preload" as="image" href="/images/banner_mobile.jpg" type="image/jpeg" media="(max-width: 767px)" />
+    
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>

@@ -42,6 +42,7 @@
                                         height="800"
                                         loading="eager"
                                         decoding="async"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
                                     />
                                 </picture>
                                 <picture v-else>
@@ -54,6 +55,7 @@
                                         height="800"
                                         loading="eager"
                                         decoding="async"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
                                     />
                                 </picture>
                             </div>

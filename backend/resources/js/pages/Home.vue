@@ -14,12 +14,13 @@
                 <img
                     src="/images/banner_web.jpg"
                     alt="Banner"
-                    class="w-full h-[600px] object-cover"
+                    class="w-full aspect-[16/5] object-cover"
                     width="1920"
                     height="600"
                     fetchpriority="high"
                     decoding="async"
                     loading="eager"
+                    sizes="100vw"
                 />
             </picture>
             <!-- Mobile Banner -->
@@ -28,12 +29,13 @@
                 <img
                     src="/images/banner_mobile.jpg"
                     alt="Banner"
-                    class="w-full h-[500px] object-cover"
+                    class="w-full aspect-[2/3] object-cover"
                     width="721"
                     height="1082"
                     fetchpriority="high"
                     decoding="async"
                     loading="eager"
+                    sizes="100vw"
                 />
             </picture>
         </section>
@@ -58,7 +60,7 @@
                     :to="`/products/${product.id}`"
                     class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
                 >
-                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                    <div class="aspect-[11/6] bg-gray-200 relative overflow-hidden">
                         <picture v-if="product.image">
                             <source :srcset="product.image.replace(/\.(jpg|jpeg|png)$/i, '.webp')" type="image/webp" />
                             <img
@@ -69,6 +71,7 @@
                                 height="336"
                                 loading="lazy"
                                 decoding="async"
+                                sizes="(max-width: 768px) 100vw, 25vw"
                             />
                         </picture>
                         <picture v-else>
@@ -81,6 +84,7 @@
                                 height="336"
                                 loading="lazy"
                                 decoding="async"
+                                sizes="(max-width: 768px) 100vw, 25vw"
                             />
                         </picture>
                     </div>
@@ -107,7 +111,7 @@
                                 :to="`/products/${product.id}`"
                                 class="block bg-white rounded-lg shadow-md overflow-hidden"
                             >
-                                <div class="h-48 bg-gray-200 relative overflow-hidden">
+                                <div class="aspect-[11/6] bg-gray-200 relative overflow-hidden">
                                     <picture v-if="product.image">
                                         <source :srcset="product.image.replace(/\.(jpg|jpeg|png)$/i, '.webp')" type="image/webp" />
                                         <img
@@ -118,6 +122,7 @@
                                             height="336"
                                             loading="lazy"
                                             decoding="async"
+                                            sizes="100vw"
                                         />
                                     </picture>
                                     <picture v-else>
@@ -130,6 +135,7 @@
                                             height="336"
                                             loading="lazy"
                                             decoding="async"
+                                            sizes="100vw"
                                         />
                                     </picture>
                                 </div>
