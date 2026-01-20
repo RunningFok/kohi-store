@@ -12,12 +12,16 @@
                 src="/images/banner_web.jpg"
                 alt="Banner"
                 class="hidden md:block w-full h-[600px] object-cover"
+                fetchpriority="high"
+                decoding="async"
             />
             <!-- Mobile Banner -->
             <img
                 src="/images/banner_mobile.jpg"
                 alt="Banner"
                 class="block md:hidden w-full h-[500px] object-cover"
+                fetchpriority="high"
+                decoding="async"
             />
         </section>
 
@@ -41,18 +45,22 @@
                     :to="`/products/${product.id}`"
                     class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
                 >
-                    <div class="h-48 bg-gray-200">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
                         <img
                             v-if="product.image"
                             :src="product.image"
                             :alt="product.name"
                             class="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
                         />
                         <img
                             v-else
                             src="/images/product_default.jpg"
                             :alt="'No Image'"
                             class="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
                         />
                     </div>
                     <div class="px-4 py-2 flex flex-row justify-between text-base">
@@ -78,18 +86,22 @@
                                 :to="`/products/${product.id}`"
                                 class="block bg-white rounded-lg shadow-md overflow-hidden"
                             >
-                                <div class="h-48 bg-gray-200 relative">
+                                <div class="h-48 bg-gray-200 relative overflow-hidden">
                                     <img
                                         v-if="product.image"
                                         :src="product.image"
                                         :alt="product.name"
                                         class="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
-                                    <img v
+                                    <img
                                         v-else
                                         src="/images/product_default.jpg"
                                         :alt="'No Image'"
                                         class="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                 </div>
                                 <div class="px-4 py-2 flex flex-row justify-between text-base">
