@@ -52,6 +52,20 @@ class OrderResource extends Resource
                     ])
                     ->columns(2),
 
+                Forms\Components\Section::make('Shipping Information')
+                    ->schema([
+                        Forms\Components\TextInput::make('shipping_address')
+                            ->label('Shipping Address')
+                            ->disabled(),
+                        Forms\Components\TextInput::make('shipping_city')
+                            ->label('Shipping City')
+                            ->disabled(),
+                        Forms\Components\TextInput::make('shipping_postal_code')
+                            ->label('Shipping Postal Code')
+                            ->disabled(),
+                    ])
+                    ->columns(2),
+
                 Forms\Components\Section::make('Timestamps')
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
