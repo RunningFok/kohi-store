@@ -2,14 +2,17 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\OrderResource\Exports\OrderExporter;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
+use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -147,6 +150,13 @@ class OrderResource extends Resource
                         );
                     }),
             ], layout: FiltersLayout::AboveContent)
+            ->headerActions([
+                ExportAction::make()
+                    ->exporter(OrderExporter::class)
+                    ->formats([
+                        ExportFormat::Csv,
+                    ])
+                    ->fileName(fn () => 'orders-' . now()->format('Y-m-d_His')),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
