@@ -11,35 +11,63 @@ export default [
         path: '/',
         name: 'home',
         component: Home,
+        meta: {
+            title: 'KohiStore - Premium Coffee Shop | Buy Coffee Online',
+            description: 'Shop premium coffee products at KohiStore. Browse our collection of high-quality coffee beans and accessories. Fast shipping and secure checkout.',
+        },
     },
     {
         path: '/products/:id',
         name: 'product-detail',
         component: ProductDetail,
+        meta: {
+            title: 'Product Details | KohiStore',
+            description: 'View product details, pricing, and availability. Add to cart and checkout securely.',
+        },
     },
     {
         path: '/login',
         name: 'login',
         component: Login,
+        meta: {
+            title: 'Login | KohiStore',
+            description: 'Sign in to your KohiStore account to access your cart, order history, and exclusive offers.',
+        },
     },
     {
         path: '/register',
         name: 'register',
         component: Register,
+        meta: {
+            title: 'Create Account | KohiStore',
+            description: 'Create a new KohiStore account to start shopping. Get access to order tracking, saved addresses, and more.',
+        },
     },
     {
         path: '/account',
         name: 'account',
         component: CustomerAccount,
+        meta: {
+            title: 'My Account | KohiStore',
+            description: 'Manage your account details, view order history, and update your personal information.',
+        },
     },
     {
         path: '/checkout',
         name: 'checkout',
         component: Checkout,
+        meta: {
+            title: 'Checkout | KohiStore',
+            description: 'Complete your order with secure checkout. Review your items and shipping information.',
+        },
     },
     {
         path: '/checkout/confirmation/:orderId',
         name: 'order-confirmation',
         component: OrderConfirmation,
+        meta: {
+            title: 'Order Confirmation | KohiStore',
+            description: 'Your order has been confirmed. View order details and tracking information.',
+        },
     },
 ];

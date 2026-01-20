@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="Shop premium coffee products at kohiSTORE. Browse our collection of high-quality coffee beans and accessories.">
+    <meta name="keywords" content="coffee, coffee shop, coffee beans, premium coffee, buy coffee online, kohiSTORE">
     
-    <title>{{ config('app.name', 'KohiStore') }}</title>
+    <title>{{ config('app.name', 'kohiSTORE') }} - Premium Coffee Bean</title>
     
     <!-- Preload critical banner images for faster LCP -->
     <link rel="preload" as="image" href="/images/banner_web.webp" type="image/webp" media="(min-width: 768px)" />
