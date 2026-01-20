@@ -12,8 +12,8 @@ export default [
         name: 'home',
         component: Home,
         meta: {
-            title: 'KohiStore - Premium Coffee Shop | Buy Coffee Online',
-            description: 'Shop premium coffee products at KohiStore. Browse our collection of high-quality coffee beans and accessories. Fast shipping and secure checkout.',
+            title: 'kohiSTORE - Premium Coffee Shop | Buy Coffee Online',
+            description: 'Shop premium coffee products at kohiSTORE. Browse our collection of high-quality coffee beans and accessories. Fast shipping and secure checkout.',
         },
     },
     {
@@ -21,7 +21,7 @@ export default [
         name: 'product-detail',
         component: ProductDetail,
         meta: {
-            title: 'Product Details | KohiStore',
+            title: 'Product Details | kohiSTORE',
             description: 'View product details, pricing, and availability. Add to cart and checkout securely.',
         },
     },
@@ -30,8 +30,8 @@ export default [
         name: 'login',
         component: Login,
         meta: {
-            title: 'Login | KohiStore',
-            description: 'Sign in to your KohiStore account to access your cart, order history, and exclusive offers.',
+            title: 'Login | kohiSTORE',
+            description: 'Sign in to your kohiSTORE account to access your cart, order history, and exclusive offers.',
         },
     },
     {
@@ -39,8 +39,8 @@ export default [
         name: 'register',
         component: Register,
         meta: {
-            title: 'Create Account | KohiStore',
-            description: 'Create a new KohiStore account to start shopping. Get access to order tracking, saved addresses, and more.',
+            title: 'Create Account | kohiSTORE',
+            description: 'Create a new kohiSTORE account to start shopping. Get access to order tracking, saved addresses, and more.',
         },
     },
     {
@@ -48,7 +48,7 @@ export default [
         name: 'account',
         component: CustomerAccount,
         meta: {
-            title: 'My Account | KohiStore',
+            title: 'My Account | kohiSTORE',
             description: 'Manage your account details, view order history, and update your personal information.',
         },
     },
@@ -57,7 +57,7 @@ export default [
         name: 'checkout',
         component: Checkout,
         meta: {
-            title: 'Checkout | KohiStore',
+            title: 'Checkout | kohiSTORE',
             description: 'Complete your order with secure checkout. Review your items and shipping information.',
         },
     },
@@ -66,7 +66,7 @@ export default [
         name: 'order-confirmation',
         component: OrderConfirmation,
         meta: {
-            title: 'Order Confirmation | KohiStore',
+            title: 'Order Confirmation | kohiSTORE',
             description: 'Your order has been confirmed. View order details and tracking information.',
         },
     },
